@@ -1,7 +1,7 @@
 {
-    "AppName": "Angry-Dinosaurs",
+    "AppName": "Attendance Duoc",
     "AuthorText": "Developed by:",
-    "Author": "Cristián Gómez Vega",
+    "Author": "",
     "Language": "Language",
     "Language.English": "English",
     "Language.Spanish": "Español",
@@ -11,6 +11,7 @@
 
     "Login.Title.Login": "Login",
     "Login.Label.Email": "Email",
+    "Login.Label.Cuenta": "account",
     "Login.Placeholder.Email": "Enter your email here",
     "Login.Label.Password": "Password",
     "Login.Placeholder.Password": "Enter your password here",
@@ -18,13 +19,18 @@
     "Login.Button.Signin": "Sign Up",
     "Login.Button.ForgotPassword": "Forgot my password",
     "Login.Button.DarkMode": "Dark Mode",
+    "Login.Placeholder.Cuenta": "Enter your account here",
 
-    "WelcomePage.Title.Wellcome": "Welcome to Angry-Dinosaurs!",
+    "WelcomePage.Title.Wellcome": "Welcome!",
 
     "HomePage.Button.Wellcome": "Home",
     "HomePage.Button.Scan": "Scan",
     "HomePage.Button.Dinosaur": "Dinosaur",
-    "HomePage.Button.Forum": "Forum",
+    ".Button.Forum": "Forum",
+    "HomePage.Button.Map": "Map",
+    "HomePage.Button.Miclase": "Myclass",
+    "HomePage.Button.Misdatos": "Mydata",
+    "HomePage.Button.Detener": "Stop QR scanning",
 
     "ThemePage.Label.ColorTheme": "Color Theme:",
     "ThemePage.Color.Light": "Light",

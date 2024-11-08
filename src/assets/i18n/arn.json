@@ -1,7 +1,7 @@
 {
-    "AppName": "Angry-Dinosaurs",
+    "AppName": "Asistencia Duoc",
     "AuthorText": "Rakinon tamiñ:",
-    "Author": "Cristián Gómez Vega",
+    "Author": "",
     "Language": "Dugün",
     "Language.English": "English",
     "Language.Spanish": "Español",
@@ -11,6 +11,7 @@
 
     "Login.Title.Login": "Wüñolün",
     "Login.Label.Email": "E-mail",
+    "Login.Label.Cuenta": "Cuenta",
     "Login.Placeholder.Email": "Eymi mülen teu e-mail",
     "Login.Label.Password": "Rakinmapu",
     "Login.Placeholder.Password": "Eymi mülen teu rakinmapu",
@@ -18,13 +19,19 @@
     "Login.Button.Signin": "Trawünme",
     "Login.Button.ForgotPassword": "Ñi rakinmapu elañmafi",
     "Login.Button.DarkMode": "Pewma külen müleyin",
+    "Login.Placeholder.Cuenta": "Eymi mülen teu cuenta",
+    
 
-    "WelcomePage.Title.Wellcome": "¡Tüfachi mülenmi Angry-Dinosaurs!",
+    "WelcomePage.Title.Wellcome": "¡Tüfachi mülenmi!",
 
     "HomePage.Button.Wellcome": "Wüña",
     "HomePage.Button.Scan": "Wütran",
     "HomePage.Button.Dinosaur": "Tüfachi Chod",
     "HomePage.Button.Forum": "Trapu",
+    "HomePage.Button.Map": "Map",
+    "HomePage.Button.Miclase": "Miclase",
+    "HomePage.Button.Misdatos": "Misdatos",
+    "HomePage.Button.Detener": "Stop QR scanning",
 
     "ThemePage.Label.ColorTheme": "Dugün de kolor:",
     "ThemePage.Color.Light": "Külfün",

@@ -1,7 +1,7 @@
 {
-    "AppName": "Angry-Dinosaurs",
+    "AppName": "Asistencia Duoc",
     "AuthorText": "Desarrollado por:",
-    "Author": "Cristián Gómez Vega",
+    "Author": "",
     "Language": "Idioma",
     "Language.English": "English",
     "Language.Spanish": "Español",
@@ -11,6 +11,7 @@
 
     "Login.Title.Login": "Iniciar sesión",
     "Login.Label.Email": "Correo",
+    "Login.Label.Cuenta": "Cuenta",
     "Login.Placeholder.Email": "Ingresa aquí tu correo",
     "Login.Label.Password": "Contraseña",
     "Login.Placeholder.Password": "Ingresa aquí tu contraseña",
@@ -18,13 +19,18 @@
     "Login.Button.Signin": "Registrarse",
     "Login.Button.ForgotPassword": "Olvidé mi contraseña",
     "Login.Button.DarkMode": "Oscuro",
+    "Login.Placeholder.Cuenta": "Ingresa aquí tu cuenta",
 
-    "WelcomePage.Title.Wellcome": "¡Bienvenido a Angry-Dinosaurs!",
+    "WelcomePage.Title.Wellcome": "¡Bienvenido (a)!",
 
     "HomePage.Button.Wellcome": "Inicio",
     "HomePage.Button.Scan": "Escanear",
     "HomePage.Button.Dinosaur": "Dinosaurio",
     "HomePage.Button.Forum": "Foro",
+    "HomePage.Button.Map": "Mapa",
+    "HomePage.Button.Miclase": "Miclase",
+    "HomePage.Button.Misdatos": "Misdatos",
+    "HomePage.Button.Detener": "Detener escaneo QR",
 
     "ThemePage.Label.ColorTheme": "Tema de color:",
     "ThemePage.Color.Light": "Claro",

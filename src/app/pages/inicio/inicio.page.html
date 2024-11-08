@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <app-codigoqr 
+  *ngIf="selectedComponent === 'inicio'">
+  </app-codigoqr>
+
+  <app-miclase 
+  *ngIf="selectedComponent === 'miclase'">
+  </app-miclase>
+
+  <app-foro 
+  *ngIf="selectedComponent === 'foro'">
+  </app-foro>
+
+  <app-misdatos
+  *ngIf="selectedComponent === 'misdatos'">
+  </app-misdatos>
+
+  
+
+</ion-content>
+
+<app-footer
+  (footerClick)="footerClick($event)">
+</app-footer>

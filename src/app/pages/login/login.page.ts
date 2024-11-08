@@ -65,6 +65,10 @@ export class LoginPage implements ViewWillEnter {
     this.authService.login(this.correo, this.password);
   }
 
+  irAlMapa() {
+    this.router.navigate(['/home']);
+  }
+
   registerNewUser() {
 
   }
