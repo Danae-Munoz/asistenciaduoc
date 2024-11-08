@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
@@ -7,6 +8,8 @@ import { IonicModule } from '@ionic/angular';
 import { MiclaseComponent } from '../miclase/miclase.component';
 import { CodigoqrComponent } from '../codigoqr/codigoqr.component';
 import { ForoComponent } from '../foro/foro.component';
+import { addIcons } from 'ionicons';
+import { gridOutline, homeOutline, pencilOutline, schoolOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-footer',
@@ -22,11 +25,13 @@ import { ForoComponent } from '../foro/foro.component';
   ]
 })
 export class FooterComponent {
-  selectedButton = 'inicio';
+  selectedButton = 'codigoqr';
   @Output() footerClick = new EventEmitter<string>();
 
 
-  constructor() { }
+  constructor() { 
+    addIcons({homeOutline,schoolOutline,pencilOutline,gridOutline})
+  }
 
   sendClickEvent($event: any) {
     this.footerClick.emit(this.selectedButton);

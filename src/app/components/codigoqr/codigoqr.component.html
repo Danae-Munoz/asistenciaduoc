@@ -1,3 +1,30 @@
-<p style="border: 3px solid blue;">
-  codigoqr works!
-</p>
+<div class="centrar">
+  <div class="enmarcar">
+
+    <h1> Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }} </h1>
+
+    <h2 *ngIf="!datosQR"> Escanea el código QR para registrar
+      tu asistencia a clases </h2>
+
+    <video #video [hidden]="!escaneando" style="width: 100%"></video>
+    <canvas #canvas hidden></canvas>
+
+    <div class="margin-top">
+      <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" shape="round">
+        <ion-icon slot="start" name="videocam-outline"></ion-icon>
+        Comenzar escaneo de QR
+      </ion-button>
+
+      <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" shape="round">
+        <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+        Detener escaneo de QR
+      </ion-button>
+
+      <ion-button (click)="simularCapturaQR()" shape="round">
+        <ion-icon slot="start" name="videocam-outline"></ion-icon>
+        Simular escaneo
+      </ion-button>
+    </div>
+
+  </div>
+</div>
