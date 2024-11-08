@@ -3,8 +3,7 @@
 
     <h1> Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }} </h1>
 
-    <h2 *ngIf="!datosQR"> Escanea el código QR para registrar
-      tu asistencia a clases </h2>
+    <h2 *ngIf="!datosQR"> </h2>
 
     <video #video [hidden]="!escaneando" style="width: 100%"></video>
     <canvas #canvas hidden></canvas>

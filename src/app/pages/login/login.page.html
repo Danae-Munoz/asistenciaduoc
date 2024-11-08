@@ -1,13 +1,16 @@
 <ion-header>
   <ion-toolbar class="transparent-bg">
-    <div slot="start" class="ion-margin">
+    <div slot="start" class="ion-margin idioma" >
       <app-language #selectLanguage></app-language>
     </div>
     <div class="show-in-landscape">
       <h1 class="glow-text"> {{ 'AppName' | translate }} </h1>
     </div>
+    <div>
+      <img src="/assets/images/duoc_transp.png" alt="" style="width: 100px; height: auto; margin-right: 50px;">
+    </div>
     <div slot="end" class="ion-margin">
-      <ion-button shape="round" size="small" (click)="navigateTheme()">
+      <ion-button class="orange-buton" shape="round" size="small" (click)="navigateTheme()">
         Tema
         <ion-icon slot="start" name="color-wand-outline"></ion-icon>
       </ion-button>
@@ -17,7 +20,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <img class="background-image" src="/assets/images/bronto-portrait-04.jpg">
+  <img class="background-image" src="/assets/images/IMG_20240405_141450.jpg">
   
   <h1 class="glow-text show-in-portrait margin-top-6"> {{ 'AppName' | translate }} </h1>
 
