@@ -24,6 +24,8 @@ export class AuthService {
   primerInicioSesion =  new BehaviorSubject<boolean>(false);
   selectedButton = new BehaviorSubject<string>('codigoqr');
 
+  private contraseñaSubject = new BehaviorSubject<string>('');
+  contraseña$ = this.contraseñaSubject.asObservable() //pregunta
 
   constructor(private router: Router, private bd: DataBaseService, private storage: Storage) { }
 
@@ -73,6 +75,9 @@ export class AuthService {
         });
       }
     });
+  }
+  transmitirContraseña(contraseña: string) {
+    this.contraseñaSubject.next(contraseña);
   }
 
   async logout() {

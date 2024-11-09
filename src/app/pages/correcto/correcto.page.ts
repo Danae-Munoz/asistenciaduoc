@@ -1,20 +1,46 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-
+import { NavigationExtras, Router } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
+import { Usuario } from 'src/app/model/usuario';
 @Component({
   selector: 'app-correcto',
-  templateUrl: './correcto.page.html',
-  styleUrls: ['./correcto.page.scss'],
+  templateUrl: 'correcto.page.html',
+  styleUrls: ['correcto.page.scss'],
+  imports: [IonicModule, CommonModule, FormsModule],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class CorrectoPage implements OnInit {
-
-  constructor() { }
+  usu = new Usuario ();
+  password:string =''
+  
+  constructor(private router: Router, private alertController: AlertController, private authService: AuthService) { }
 
   ngOnInit() {
+
+    this.authService.contraseña$.subscribe(contraseña => {
+      this.password = contraseña;
+    });   
+
+
+
+    const nav = this.router.getCurrentNavigation();
+    if (nav) {
+      if (nav.extras.state) {
+        this.usu = nav.extras.state['usuario'];
+        console.log(this.usu)
+        this.password=this.usu.password;
+        console.log(this.usu.toString());
+        console.log(this.password)
+        return;
+      }
+    }
   }
 
+  login(){
+    this.router.navigate(['/login']);
+  }
 }
