@@ -1,42 +1,34 @@
-<ion-header [translucent]="true">  
-  <ion-toolbar>  
-    <ion-col size-md="3">  
-      <ion-img src="../../../assets/img/Logo_DuocUC.svg.png" class="logo ion-margin-left"></ion-img>  
-    </ion-col>  
-    <ion-col size-md="3">  
-      <div class="ion-text title">Sistema de Asistencia Duoc UC </div>  
-    </ion-col>  
-    <ion-col size-md="3"></ion-col>  
-  </ion-toolbar>  
-</ion-header> 
-<ion-content [fullscreen]="true">
-  <div class="centrado">
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-col size-md="6">
+      <ion-img src="/assets/icon/logo-duoc.png" class="logo ion-margin-left"></ion-img>
+    </ion-col>
+    <ion-col size-md="12">
+      <div class="ion-text-center">Sistema de Asistencia DUOCUC</div>
+    </ion-col>
+    <ion-col size-md="6"></ion-col>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="/assets/icon/c-28b93bf742.webp" class="img-fluid" style="position: absolute; right: 0; top: 0; z-index: -100; WIDTH:100%; height: 100%;">
+  <div class="centrado-vertical">
     <ion-card-content class="login ion-fade-in-up ion-animatable">
-      <ion-title>
-        <h2>PASO 1</h2>
-        <h2>Ingresa tu correo</h2>
-        <br>
-      </ion-title>
-      <ion-item>  
-        <ion-label position="floating">Ingrese su correo</ion-label>  
-        <ion-input labelplacement="floating" placeholder="" [(ngModel)]="correo"></ion-input>  
+      
+      <div class="titulo">
+        <h1>Registrarme</h1>
+      </div>
+      <ion-item class="ion-margin-top">
+        <ion-input label="Correo:" labelplacement="floating" [(ngModel)]="correo"></ion-input>
       </ion-item>
     
       <ion-row>
         <ion-col size="12">
           <br>
-          <ion-button class="orange-button" shape="block" (click)="recuperarContrasena()">Recuperar Contraseña</ion-button>
-          <ion-button  expand="block" class=" orange-button ion-margin-top"  (click)="volverAlInicio()"> Volver al Inicio </ion-button>
+          <ion-button shape="block" (click)="recuperarContrasena()">Recuperar Contraseña</ion-button>
+          <ion-button expand="block" class="ion-margin-top"  (click)="volverAlInicio()"> Volver al Inicio </ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>
-  
-    <ion-alert
-      [isOpen]="isAlertOpen"
-      header="Aviso"
-      message="Campo obligatorio"
-      [buttons]="alertButtons">
-    </ion-alert>
   </div>
 </ion-content>
-
