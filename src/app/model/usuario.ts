@@ -76,6 +76,12 @@ export class Usuario extends Persona {
   async buscarUsuarioPorCuenta(cuenta: string): Promise<Usuario | undefined>  {
     return await this.db!.buscarUsuarioPorCuenta(cuenta);
   }
+  public static buscarUsuarioPorCorreo(correo: string): Usuario | undefined {
+    const usuario = new Usuario();  // Crear una nueva instancia de Usuario
+    DataBaseService.crearUsuariosDePrueba();  // Asegurarte de que la lista de usuarios esté poblada
+    return usuario.listaUsuarios.find(usu => usu.correo === correo);  // Buscar en la lista de usuarios
+  }
+  
 
   async guardarUsuario(usuario: Usuario): Promise<void> {
     this.db!.guardarUsuario(usuario);

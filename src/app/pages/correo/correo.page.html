@@ -1,13 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>correo</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<ion-header [translucent]="true">  
+  <ion-toolbar>  
+    <ion-col size-md="3">  
+      <ion-img src="../../../assets/img/Logo_DuocUC.svg.png" class="logo ion-margin-left"></ion-img>  
+    </ion-col>  
+    <ion-col size-md="3">  
+      <div class="ion-text title">Sistema de Asistencia Duoc UC </div>  
+    </ion-col>  
+    <ion-col size-md="3"></ion-col>  
+  </ion-toolbar>  
+</ion-header> 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">correo</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="centrado">
+    <ion-card-content class="login ion-fade-in-up ion-animatable">
+      <ion-title>
+        <h2>PASO 1</h2>
+        <h2>Ingresa tu correo</h2>
+        <br>
+      </ion-title>
+      <ion-item>  
+        <ion-label position="floating">Ingrese su correo</ion-label>  
+        <ion-input labelplacement="floating" placeholder="" [(ngModel)]="correo"></ion-input>  
+      </ion-item>
+    
+      <ion-row>
+        <ion-col size="12">
+          <br>
+          <ion-button class="orange-button" shape="block" (click)="recuperarContrasena()">Recuperar Contraseña</ion-button>
+          <ion-button  expand="block" class=" orange-button ion-margin-top"  (click)="volverAlInicio()"> Volver al Inicio </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  
+    <ion-alert
+      [isOpen]="isAlertOpen"
+      header="Aviso"
+      message="Campo obligatorio"
+      [buttons]="alertButtons">
+    </ion-alert>
+  </div>
 </ion-content>
+

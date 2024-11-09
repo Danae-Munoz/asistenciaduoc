@@ -9,6 +9,9 @@ import { NivelEducacional } from '../model/nivel-educacional';
   providedIn: 'root'
 })
 export class DataBaseService {
+  static crearUsuariosDePrueba() {
+    throw new Error('Method not implemented.');
+  }
 
   userUpgrades = [
     {
@@ -144,6 +147,12 @@ export class DataBaseService {
     const usuarios: Usuario[]= (await this.db.query(
       'SELECT * FROM USUARIO WHERE cuenta=?;',
       [cuenta])).values as Usuario[];
+    return usuarios[0];
+  }
+  async buscarUsuarioPorCorreo(correo: string): Promise<Usuario | undefined> {
+    const usuarios: Usuario[]= (await this.db.query(
+      'SELECT * FROM USUARIO WHERE correo=?;',
+      [correo])).values as Usuario[];
     return usuarios[0];
   }
 
