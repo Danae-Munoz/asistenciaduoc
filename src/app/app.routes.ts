@@ -39,5 +39,9 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/inicio/inicio.page').then( m => m.InicioPage),
     canActivate: [inicioGuard]
   },
+  {
+    path: 'correo',
+    loadComponent: () => import('./pages/correo/correo.page').then( m => m.CorreoPage)
+  },
 
 ];
