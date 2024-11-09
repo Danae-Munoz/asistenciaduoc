@@ -14,6 +14,7 @@ export class Usuario extends Persona {
   public asistencia: Asistencia;
   public listaUsuarios: Usuario[];
 
+
   constructor(@Optional() private db?: DataBaseService) {
     super();
     this.cuenta = '';
