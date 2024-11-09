@@ -5,6 +5,7 @@ import { showToast } from 'src/app/tools/message-routines';
 import { Usuario } from '../model/usuario';
 import { Storage } from '@ionic/storage-angular';
 import { DataBaseService } from './data-base.service';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
 
   keyUsuario = 'USUARIO_AUTENTICADO';
   usuarioAutenticado = new BehaviorSubject<Usuario | null>(null);
-  authUser = new BehaviorSubject<Usuario | null>(null);
+  authUser = new BehaviorSubject<User | null>(null);
   // La variable primerInicioSesion vale true cuando el usuario digita correctamente sus
   // credenciales y logra entrar al sistema por primera vez. Pero vale falso, si el 
   // usuario ya ha iniciado sesión, luego cierra la aplicación sin cerrar la sesión
