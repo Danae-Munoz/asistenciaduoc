@@ -4,10 +4,6 @@ import { SQLiteService } from './sqlite.service';
 import { Usuario } from '../model/usuario';
 import { BehaviorSubject } from 'rxjs';
 import { NivelEducacional } from '../model/nivel-educacional';
-import { showAlertError } from '../tools/message-functions';
-import { User } from '../model/user';
-import { EducationalLevel } from '../model/educational-level';
-import { convertStringToDate } from '../tools/date-functions';
 
 @Injectable({
   providedIn: 'root'
@@ -149,35 +145,6 @@ export class DataBaseService {
       'SELECT * FROM USUARIO WHERE cuenta=?;',
       [cuenta])).values as Usuario[];
     return usuarios[0];
-  }
-  async findUser(userName: string, password: string): Promise<User | undefined> {
-    try {
-      const q = 'SELECT * FROM USER WHERE userName=? AND password=?;';
-      const rows = (await this.db.query(q, [userName, password])).values;
-      return rows? this.rowToUser(rows[0]) : undefined;
-    } catch (error) {
-      showAlertError('DataBaseService.findUser', error);
-      return undefined;
-    }
-  }
-  private rowToUser(row: any): User {
-    try {
-      const user = new User();
-      user.userName = row.userName;
-      user.email = row.email;
-      user.password = row.password;
-      user.secretQuestion = row.secretQuestion;
-      user.secretAnswer = row.secretAnswer;
-      user.firstName = row.firstName;
-      user.lastName = row.lastName;
-      user.educationalLevel = EducationalLevel.findLevel(row.educationalLevel) || new EducationalLevel();
-      user.dateOfBirth = convertStringToDate(row.dateOfBirth);
-      user.address = row.address;
-      return user;
-    } catch (error) {
-      showAlertError('DataBaseService.rowToUser', error);
-      return new User();
-    }
   }
 
 }
