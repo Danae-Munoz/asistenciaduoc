@@ -127,6 +127,13 @@ export class DataBaseService {
     return usuarios[0];
   }
 
+  async leerCorreo(cuenta: string): Promise<Usuario | undefined> {
+    const usuarios: Usuario[]= (await this.db.query(
+      'SELECT * FROM USUARIO WHERE correo=?;', 
+      [cuenta])).values as Usuario[];
+    return usuarios[0];
+  }
+
   // Delete del CRUD
   async eliminarUsuarioUsandoCuenta(cuenta: string): Promise<void> {
     await this.db.run('DELETE FROM USUARIO WHERE cuenta=?', 

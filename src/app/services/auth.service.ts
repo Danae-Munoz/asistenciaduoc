@@ -44,6 +44,7 @@ export class AuthService {
     this.usuarioAutenticado.next(usuario);
     return usuario;
   }
+  
 
   guardarUsuarioAutenticado(usuario: Usuario) {
     this.storage.set(this.keyUsuario, usuario);
