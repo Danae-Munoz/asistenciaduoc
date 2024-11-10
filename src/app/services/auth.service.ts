@@ -90,4 +90,9 @@ export class AuthService {
     })
   }
 
+  setUsuarioAutenticado(usuario: Usuario) {
+    this.storage.set(this.keyUsuario, usuario);
+    this.usuarioAutenticado.next(usuario);
+  }
+
 }
