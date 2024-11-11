@@ -28,7 +28,7 @@ export class CorreoPage implements OnInit {
 
 
   async recuperarContrasena() {
-    const usu=await this.bd.leerCorreo(this.correo);
+    const usu=await this.bd.findUserByEmail(this.correo);
     if (usu == undefined){
     this.router.navigate(['/incorrecto']);
   }else{
