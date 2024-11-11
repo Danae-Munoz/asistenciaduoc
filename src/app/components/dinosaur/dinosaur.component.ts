@@ -1,3 +1,4 @@
+import { User } from 'src/app/model/user';
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -14,12 +15,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DinosaurComponent implements OnDestroy {
 
-  dino: any;
+  user: any;
   private subscription: Subscription;
 
   constructor(private authService: AuthService) { 
     this.subscription = this.authService.qrCodeData.subscribe((qr) => {
-      this.dino = qr? JSON.parse(qr): null;
+      this.user = qr? JSON.parse(qr): null;
     })
   }
   

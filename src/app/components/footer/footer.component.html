@@ -1,12 +1,12 @@
 <ion-footer class="custom-footer">
   <ion-toolbar color="primary" style="padding-bottom: 4px;">
     <ion-segment 
-      value="welcome" 
+      value="home" 
       (ionChange)="sendClickEvent($event)"
       [(ngModel)]="selectedButton"
     >
 
-      <ion-segment-button value="codigoqr" color="primary" class="custom-segment-button">
+      <ion-segment-button value="home" color="primary" class="custom-segment-button">
         <ion-icon name="home-outline"></ion-icon>
         {{ "HomePage.Button.Wellcome" | translate }}
       </ion-segment-button>

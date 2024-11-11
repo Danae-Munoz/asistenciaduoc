@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { DinosaurComponent } from 'src/app/components/dinosaur/dinosaur.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { IonContent } from '@ionic/angular/standalone'
@@ -14,31 +14,32 @@ import { ScannerService } from 'src/app/services/scanner.service';
 import { WelcomeComponent } from 'src/app/components/welcome/welcome.component';
 import { ForumComponent } from 'src/app/components/forum/forum.component';
 import { MiclaseComponent } from "../../components/miclase/miclase.component";
-import { MisdatosComponent } from "../../components/misdatos/misdatos.component";
+import { MisDatosComponent } from 'src/app/components/misdatos/misdatos.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [
+  imports:[
     CommonModule, FormsModule, TranslateModule, IonContent,
     HeaderComponent, FooterComponent,
     WelcomeComponent, QrWebScannerComponent, DinosaurComponent,
-    ForumComponent,
-    MiclaseComponent,
-    MisdatosComponent
-]
+    ForumComponent, MiclaseComponent, MisDatosComponent   
+],
+schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
+
+// MisdatosComponent
 export class HomePage {
   
   @ViewChild(FooterComponent) footer!: FooterComponent;
-  selectedComponent = 'welcome';
+  selectedComponent = 'home';
 
   constructor(private auth: AuthService, private scanner: ScannerService) { }
 
   ionViewWillEnter() {
-    this.changeComponent('welcome');
+    this.changeComponent('home');
   }
 
   async headerClick(button: string) {
@@ -58,7 +59,7 @@ export class HomePage {
   }
 
   webQrStopped() {
-    this.changeComponent('welcome');
+    this.changeComponent('home');
   }
 
   showDinoComponent(qr: string) {
@@ -69,16 +70,17 @@ export class HomePage {
       return;
     }
     
-    this.changeComponent('welcome');
+    this.changeComponent('home');
   }
 
   footerClick(button: string) {
+    console.log('Footer clicked:', button);
     this.selectedComponent = button;
   }
 
   changeComponent(name: string) {
-    this.selectedComponent = name;
-    this.footer.selectedButton = name;
+    this.selectedComponent = name;    
+    this.footer.selectedButton = name;    
   }
 
 }

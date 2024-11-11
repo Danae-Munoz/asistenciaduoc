@@ -20,7 +20,7 @@ import { homeOutline, pawOutline, pencilOutline, qrCodeOutline, schoolOutline, g
 })
 export class FooterComponent {
 
-  selectedButton = 'welcome';
+  selectedButton = 'home';
   @Output() footerClick = new EventEmitter<string>();
 
   constructor() { 
