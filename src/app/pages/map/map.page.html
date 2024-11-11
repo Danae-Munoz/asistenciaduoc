@@ -1,4 +1,14 @@
-<app-header></app-header>
+<ion-header>
+  <ion-toolbar class="transparent-bg">
+    <ion-row>
+      <ion-col size="12">
+        <br>
+        <ion-button expand="block" class="ion-margin-top"  (click)="volverAlInicio()"> Volver al Inicio </ion-button>
+      </ion-col>
+    </ion-row> 
+    
+   </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true">
 
@@ -22,11 +32,6 @@
     <ion-button shape="round" color="secondary" size="small"
         (click)="showRouteToDuoc()">
       Ruta
-    </ion-button>
-
-    <ion-button shape="round" color="secondary" size="small"
-        (click)="navegarMisDatos()">
-      Mis datos
     </ion-button>
 
     <div *ngIf="distance">

@@ -139,6 +139,10 @@ export class MapPage implements OnInit {
     });
   }
 
+  volverAlInicio(){
+    this.router.navigate(['/login']);
+  }
+
   fixLeafletIconPath() {
     // Sobrescribimos las rutas de los iconos de Leaflet
     const iconDefault = L.icon({

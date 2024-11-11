@@ -66,7 +66,7 @@ export class LoginPage implements ViewWillEnter {
   }
 
   irAlMapa() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/map']);
   }
 
   registerNewUser() {
