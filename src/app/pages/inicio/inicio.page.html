@@ -1,6 +1,12 @@
-<app-header></app-header>
+<app-header 
+  (headerClick)="headerClick($event)">
+</app-header>
 
 <ion-content [fullscreen]="true">
+  <app-codigoqr 
+    *ngIf="selectedComponent === 'codigoqr'" 
+    (stopped)="webQrStopped()">
+  </app-codigoqr >
   
   <app-codigoqr 
   *ngIf="selectedComponent === 'inicio'">
@@ -10,9 +16,9 @@
   *ngIf="selectedComponent === 'miclase'">
   </app-miclase>
 
-  <app-foro 
-  *ngIf="selectedComponent === 'foro'">
-  </app-foro>
+  <app-forum 
+  *ngIf="selectedComponent === 'forum'">
+  </app-forum>
 
   <app-misdatos
   *ngIf="selectedComponent === 'misdatos'">
