@@ -3,7 +3,6 @@ import { Persona } from "./persona";
 import { Asistencia } from '../interfaces/asistencia';
 import { DataBaseService } from '../services/data-base.service';
 import { Optional } from '@angular/core';
-import { showAlert } from '../tools/message-functions';
 
 export class Usuario extends Persona {
 
@@ -70,20 +69,6 @@ export class Usuario extends Persona {
     return usuario;
   }
 
-  static jsonUserExample = 
-  `{
-    "cuenta": "user123",
-    "correo": "user@example.com",
-    "password": "securePassword123",
-    "preguntaSecreta": "Nombre de tu primera mascota",
-    "respuestaSecreta": "Fido",
-    "nombre": "Juan",
-    "apellido": "Pérez",
-    "nivelEducacional": "Universitario",
-    "fechaNacimiento": "1990-01-01"
-  }`;
-
-
   async buscarUsuarioValido(cuenta: string, password: string): Promise<Usuario | undefined> {
     return await this.db!.buscarUsuarioValido(cuenta, password);
   }
@@ -118,31 +103,5 @@ export class Usuario extends Persona {
       ${this.nivelEducacional.getEducacion()}
       ${this.getFechaNacimiento()}`;
   }
-
-  static isValidUserQrCode(qr: string) {
-
-    if (qr === '') return false;
-
-    try {
-        const json = JSON.parse(qr);
-
-        if ( json.cuenta            !== undefined
-          && json.correo            !== undefined
-          && json.password          !== undefined
-          && json.preguntaSecreta   !== undefined
-          && json.respuestaSecreta  !== undefined
-          && json.nombre            !== undefined
-          && json.apellido          !== undefined
-          && json.nivelEducacional  !== undefined
-          && json.fechaNacimiento   !== undefined)
-        {
-            return true;
-        }
-    } catch (error) { }
-
-    showAlert('El código QR escaneado no corresponde a un usuario válido');
-    return false;
-}
-
 
 }

@@ -4,10 +4,6 @@ import { inject } from '@angular/core';
 import { convertDateToString } from '../tools/date-functions';
 
 export class User extends Person {
-  asistencia: any;
-  static findByEmail(email: string) {
-    throw new Error('Method not implemented.');
-  }
 
   userName = '';
   email = '';

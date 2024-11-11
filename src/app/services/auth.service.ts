@@ -6,7 +6,6 @@ import { Usuario } from '../model/usuario';
 import { Storage } from '@ionic/storage-angular';
 import { DataBaseService } from './data-base.service';
 import { User } from '../model/user';
-import { showAlertError } from '../tools/message-functions';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,6 @@ import { showAlertError } from '../tools/message-functions';
 export class AuthService {
 
   keyUsuario = 'USUARIO_AUTENTICADO';
-  storageAuthUserKey = 'AUTHENTICATED_USER';
   usuarioAutenticado = new BehaviorSubject<Usuario | null>(null);
   authUser = new BehaviorSubject<User | null>(null);
   // La variable primerInicioSesion vale true cuando el usuario digita correctamente sus
@@ -28,7 +26,7 @@ export class AuthService {
 
   private contraseñaSubject = new BehaviorSubject<string>('');
   contraseña$ = this.contraseñaSubject.asObservable() //pregunta
-  qrCodeData = new BehaviorSubject<string | null>(null);
+
   constructor(private router: Router, private bd: DataBaseService, private storage: Storage) { }
 
   async inicializarAutenticacion() {
@@ -96,27 +94,6 @@ export class AuthService {
   setUsuarioAutenticado(usuario: Usuario) {
     this.storage.set(this.keyUsuario, usuario);
     this.usuarioAutenticado.next(usuario);
-  }
-
-  async saveAuthUser(user: User): Promise<User | null> {
-    try {
-      await this.storage.set(this.storageAuthUserKey, user);
-      this.authUser.next(user);
-      return user;
-    } catch (error) {
-      showAlertError('AuthService.saveAuthUser', error);
-      return null;
-    }
-  }
-  async readAuthUser(): Promise<User | null> {
-    try {
-      const user = (await this.storage.get(this.storageAuthUserKey)) as User | null;
-      this.authUser.next(user ?? null);
-      return user;
-    } catch (error) {
-      showAlertError('AuthService.readAuthUser', error);
-      return null;
-    }
   }
 
 }

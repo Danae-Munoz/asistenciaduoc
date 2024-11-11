@@ -1,56 +1,57 @@
-<div class="centrado-vertical">
-  <img src="/assets/icon/c-28b93bf742.webp" class="img-fluid" style="position: absolute; right: 0; top: 0; z-index: -100; WIDTH:100%; height: 100%;">
-  <ion-grid fixed>
-      <ion-card-content class="login ion-fade-in-up ion-animatable">
-      <ion-row>
-        <ion-col size="6" class="borde-celda">Bloque de inicio</ion-col>
-        <ion-col size="6" class="borde-celda">
-          <span *ngIf="asistencia.bloqueInicio > 0">
-            {{ asistencia.bloqueInicio }}
-          </span>
-      </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6" class="borde-celda">Bloque de término</ion-col>
-        <ion-col size="6" class="borde-celda">
-          <span *ngIf="asistencia.bloqueTermino > 0">
-            {{ asistencia.bloqueTermino }}
-          </span>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6" class="borde-celda">Día</ion-col>
-        <ion-col size="6" class="borde-celda">{{ asistencia.dia }}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6" class="borde-celda">Hora de inicio</ion-col>
-        <ion-col size="6" class="borde-celda">{{ asistencia.horaInicio }}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6" class="borde-celda">Hora de término</ion-col>
-        <ion-col size="6" class="borde-celda">{{asistencia.horaFin}}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6" class="borde-celda">Sigla de asignatura</ion-col>
-        <ion-col size="6" class="borde-celda">{{ asistencia.idAsignatura }}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6" class="borde-celda">Nombre de asignatura</ion-col>
-        <ion-col size="6" class="borde-celda">{{ asistencia.nombreAsignatura }}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6" class="borde-celda">Nombre del profesor</ion-col>
-        <ion-col size="6" class="borde-celda">{{ asistencia.nombreProfesor }}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6" class="borde-celda">Sección</ion-col>
-        <ion-col size="6" class="borde-celda">{{ asistencia.seccion }}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="6" class="borde-celda">Sede</ion-col>
-        <ion-col size="6" class="borde-celda">{{ asistencia.sede }}</ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-grid>
+<div class="centrar">
+  <div class="enmarcar">
+    <h1> Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }} </h1>
 
+    <h1 *ngIf="!usuario.asistencia.idAsignatura">
+      Asistencia sin información
+    </h1>
+
+    <div *ngIf="usuario.asistencia.idAsignatura">
+      <h1> Has quedado presente en tu clase </h1>
+      <table>
+        <tbody>
+          <tr>
+            <td>Bloque Inicio</td>
+            <td>{{ usuario.asistencia!.bloqueInicio }}</td>
+          </tr>
+          <tr>
+            <td>Bloque Término</td>
+            <td>{{ usuario.asistencia!.bloqueTermino }}</td>
+          </tr>
+          <tr>
+            <td>Día</td>
+            <td>{{ usuario.asistencia!.dia }}</td>
+          </tr>
+          <tr>
+            <td>Hora Inicio</td>
+            <td>{{ usuario.asistencia!.horaInicio }}</td>
+          </tr>
+          <tr>
+            <td>Hora Fin</td>
+            <td>{{ usuario.asistencia!.horaFin }}</td>
+          </tr>
+          <tr>
+            <td>ID Asignatura</td>
+            <td>{{ usuario.asistencia!.idAsignatura }}</td>
+          </tr>
+          <tr>
+            <td>Nombre Asignatura</td>
+            <td>{{ usuario.asistencia!.nombreAsignatura }}</td>
+          </tr>
+          <tr>
+            <td>Nombre Profesor</td>
+            <td>{{ usuario.asistencia!.nombreProfesor }}</td>
+          </tr>
+          <tr>
+            <td>Sección</td>
+            <td>{{ usuario.asistencia!.seccion }}</td>
+          </tr>
+          <tr>
+            <td>Sede</td>
+            <td>{{ usuario.asistencia!.sede }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

@@ -10,8 +10,5 @@
   "files.autoSave": "afterDelay", 
   "editor.tabSize": 2, 
   "editor.mouseWheelZoom": true, 
-  "editor.minimap.enabled": false,
-  "cSpell.words": [
-    "Asistencia"
-  ]
+  "editor.minimap.enabled": false
 }
