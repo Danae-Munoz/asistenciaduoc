@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-import { DataBaseService } from 'src/app/services/data-base.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { Usuario } from 'src/app/model/usuario';
 
 @Component({
@@ -19,10 +19,13 @@ export class CorreoPage implements OnInit {
 
   correo = '';
 
-  constructor(private router: Router, private bd: DataBaseService , private authService: AuthService) { }
+  constructor(private router: Router, private bd: DatabaseService , private authService: AuthService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
+
+
 
   async recuperarContrasena() {
     const usu=await this.bd.leerCorreo(this.correo);

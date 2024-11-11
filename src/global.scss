@@ -208,7 +208,7 @@ ion-title {
    que el contenedor ocupe el 100% de la altura disponible.
 */
 
-.centrar {
+.center-frame {
   display: flex;                 /* Define un contenedor Flexbox */
   justify-content: center;       /* Centra el contenido horizontalmente dentro del contenedor */
   align-items: center;           /* Centra el contenido verticalmente dentro del contenedor */
@@ -217,13 +217,13 @@ ion-title {
   //border: 5px solid red !important; // Comentado: Estilo de borde para depuración visual
 }
 
-/* Clases .enmarcar:
+/* Clases .picture-frame:
  Estas clases están pensada para proporcionar un marco (borde) alrededor de un contenido
  con un ancho máximo. Asegura que el contenido esté centrado horizontalmente, con bordes
  redondeados, relleno interno (padding) y un borde gris claro.
 */
 
-.enmarcar {
+.picture-frame {
   max-width: 600px;              /* Define el ancho máximo del elemento en 600px */
   width: 100%;                   /* Asegura que el elemento ocupe el 100% del ancho disponible */
   margin: auto;                  /* Centra el elemento horizontalmente dentro de su contenedor padre */
@@ -233,7 +233,7 @@ ion-title {
   //border: 5px solid blue !important; // Comentado: Estilo de borde para depuración visual
 }
 
-.enmarcar800px {
+.picture-frame-800px {
   max-width: 800px;              /* Define el ancho máximo del elemento en 600px */
   width: 100%;                   /* Asegura que el elemento ocupe el 100% del ancho disponible */
   margin: auto;                  /* Centra el elemento horizontalmente dentro de su contenedor padre */
@@ -243,7 +243,7 @@ ion-title {
   //border: 5px solid blue !important; // Comentado: Estilo de borde para depuración visual
 }
 
-.enmarcar1000px {
+.picture-frame-1000px {
   max-width: 1000px;              /* Define el ancho máximo del elemento en 600px */
   width: 100%;                   /* Asegura que el elemento ocupe el 100% del ancho disponible */
   margin: auto;                  /* Centra el elemento horizontalmente dentro de su contenedor padre */
@@ -251,6 +251,10 @@ ion-title {
   padding: 20px;                 /* Agrega un espacio de 20px dentro del elemento, entre el contenido y el borde */
   border: 1px solid gray;      /* Aplica un borde de 1px de grosor con color gris alrededor del elemento */
   //border: 5px solid blue !important; // Comentado: Estilo de borde para depuración visual
+}
+
+.alert-title {
+  font-size: 1.5rem !important; /* Ajusta el tamaño del texto */
 }
 
 // CGV-FIN: CSS

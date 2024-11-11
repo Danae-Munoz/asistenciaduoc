@@ -43,8 +43,8 @@ import { Capacitor } from '@capacitor/core';
 import { defineCustomElements as jeepSqlite} from 'jeep-sqlite/loader';
 import { APP_INITIALIZER } from '@angular/core';
 import { SQLiteService } from './app/services/sqlite.service';
-import { DataBaseService } from './app/services/data-base.service';
-import { InitializeAppService } from './app/services/initialize.app.service';
+import { DatabaseService } from './app/services/database.service';
+import { InitializeService } from './app/services/initialize.service';
 import { AuthService } from './app/services/auth.service';
 import { Storage } from '@ionic/storage-angular';
 import { APIClientService } from './app/services/apiclient.service';
@@ -60,7 +60,7 @@ if(platform === "web") {
   });
 }
 
-export function initializeFactory(init: InitializeAppService) {
+export function initializeFactory(init: InitializeService) {
   return () => init.inicializarAplicacion();
 }
 // CGV-FIN-BASE-DATOS
@@ -83,18 +83,18 @@ bootstrapApplication(AppComponent, {
     // CGV-INI-BASE-DATOS En esta sección se agregan los servicios que hemos implementado.
     importProvidersFrom(IonicModule.forRoot({ innerHTMLTemplatesEnabled: true })),
     importProvidersFrom(HttpClient),
-    InitializeAppService,
+    InitializeService,
     SQLiteService,
-    DataBaseService,
+    DatabaseService,
     AuthService,
     Storage,
     APIClientService,
     {
       provide: APP_INITIALIZER,
       useFactory: initializeFactory,
-      deps: [InitializeAppService],
+      deps: [InitializeService],
       multi: true
-    }
+    }, provideAnimationsAsync()
     // CGV-FIN-BASE-DATOS
 
   ],

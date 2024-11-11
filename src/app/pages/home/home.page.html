@@ -1,33 +1,30 @@
-<app-header></app-header>
+<app-header 
+  (headerClick)="headerClick($event)">
+</app-header>
 
 <ion-content [fullscreen]="true">
 
-  <!-- El div con id "mapId" será donde se mostrará el mapa -->
-  <div id="mapId" style="height: 100%;"></div>
+  <app-qrwebscanner 
+    *ngIf="selectedComponent === 'qrwebscanner'" 
+    (scanned)="webQrScanned($event)"
+    (stopped)="webQrStopped()">
+  </app-qrwebscanner >
+
+
+  <app-dinosaur 
+  *ngIf="selectedComponent === 'dinosaur'">
+  </app-dinosaur>
+
+  <app-forum 
+  *ngIf="selectedComponent === 'forum'">
+  </app-forum>
+
+  <app-misdatos
+  *ngIf="selectedComponent === 'misdatos'">
+  </app-misdatos>
 
 </ion-content>
 
-
-<ion-footer>
-  <ion-toolbar class="ion-text-center" color="primary">
-    <ion-button color="secondary" shape="round" color="secondary" size="small"
-        (click)="goToDUOC()" >
-      DUOC
-    </ion-button>
-
-    <ion-button color="secondary" shape="round" color="secondary" size="small"
-        (click)="goToMyPosition()">
-      Aquí
-    </ion-button>
-
-    <ion-button color="primary" shape="round" color="secondary" size="small"
-        (click)="showRouteToDuoc()">
-      Ruta
-    </ion-button>
-
-    <div *ngIf="distance">
-      <br>
-      {{ distance }}
-    </div>
-  </ion-toolbar>
-</ion-footer>
+<app-footer
+  (footerClick)="footerClick($event)">
+</app-footer>

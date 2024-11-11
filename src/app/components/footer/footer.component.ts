@@ -1,15 +1,10 @@
-import { AuthService } from 'src/app/services/auth.service';
-
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { IonicModule } from '@ionic/angular';
-import { MiclaseComponent } from '../miclase/miclase.component';
-import { CodigoqrComponent } from '../codigoqr/codigoqr.component';
-import { ForoComponent } from '../foro/foro.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { IonFooter, IonToolbar, IonSegment, IonSegmentButton, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { gridOutline, homeOutline, pencilOutline, schoolOutline } from 'ionicons/icons';
+import { homeOutline, pawOutline, pencilOutline, qrCodeOutline, schoolOutline, gridOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-footer',
@@ -19,18 +14,17 @@ import { gridOutline, homeOutline, pencilOutline, schoolOutline } from 'ionicons
   imports: [
       CommonModule    // CGV-Permite usar directivas comunes de Angular
     , FormsModule     // CGV-Permite usar formularios
-    , IonicModule     // CGV-Permite usar componentes de Ionic como IonContent, IonItem, etc.
     , TranslateModule // CGV-Permite usar pipe 'translate'
-    ,MiclaseComponent, CodigoqrComponent, ForoComponent
+    , IonFooter, IonToolbar, IonSegment, IonSegmentButton, IonIcon
   ]
 })
 export class FooterComponent {
-  selectedButton = 'codigoqr';
+
+  selectedButton = 'welcome';
   @Output() footerClick = new EventEmitter<string>();
 
-
   constructor() { 
-    addIcons({homeOutline,schoolOutline,pencilOutline,gridOutline})
+    addIcons({homeOutline,schoolOutline,gridOutline,pencilOutline,qrCodeOutline,pawOutline});
   }
 
   sendClickEvent($event: any) {

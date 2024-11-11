@@ -1,7 +1,7 @@
 import { NivelEducacional } from './nivel-educacional';
 import { Persona } from "./persona";
 import { Asistencia } from '../interfaces/asistencia';
-import { DataBaseService } from '../services/data-base.service';
+import { DatabaseService } from '../services/database.service';
 import { Optional } from '@angular/core';
 
 export class Usuario extends Persona {
@@ -15,7 +15,7 @@ export class Usuario extends Persona {
   public listaUsuarios: Usuario[];
 
 
-  constructor(@Optional() private db?: DataBaseService) {
+  constructor(@Optional() private db?: DatabaseService) {
     super();
     this.cuenta = '';
     this.correo = '';
@@ -78,7 +78,7 @@ export class Usuario extends Persona {
   }
   public static buscarUsuarioPorCorreo(correo: string): Usuario | undefined {
     const usuario = new Usuario();  // Crear una nueva instancia de Usuario
-    DataBaseService.crearUsuariosDePrueba();  // Asegurarte de que la lista de usuarios esté poblada
+    DatabaseService.crearUsuariosDePrueba();  // Asegurarte de que la lista de usuarios esté poblada
     return usuario.listaUsuarios.find(usu => usu.correo === correo);  // Buscar en la lista de usuarios
   }
   

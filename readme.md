@@ -1,7 +1,7 @@
 # **<span style="color: darkblue; font: verdana;">Angry-Dinosaurs</span>**
 
 ### Desarrollado por el profesor Cristián Gómez Vega
-###  Triskeledu: cgomezvega@triskeledu.cl
+### Correo Triskeledu: cgomezvega@triskeledu.cl
 ### Correo DUOC: cri.gomezv@profesor.duoc.cl
 ### www.triskeledu.cl
 
@@ -63,14 +63,26 @@ Nótese que **"cgome"** es el usuario del computador del profesor y allí debes 
 `npm i sql.js`
 `npm i @ionic/storage-angular`
 `npm i native-run`
+`npm i @capacitor/android`
 `npm i @capacitor/device`
 `npm i @capacitor/camera`
 `npm i @capacitor/geolocation`
 `npm i @capacitor/splash-screen`
 `npm i @capacitor/geolocation`
+`npm i @capacitor-mlkit/barcode-scanning`
 `npm i leaflet`
 `npm i @types/leaflet`
-ESTA COMPONENTE DIO PROBLEMAS Y LA TUVE QUE DESINSTALAR `npm i @capacitor/barcode-scanner`
+`npm i npm install --save-dev @types/body-parser`
+`npm i npm install --save-dev @types/bonjour`
+`npm i npm install --save-dev @types/connect`
+`npm i npm install --save-dev @types/connect-history-api-fallback`
+`npm i npm install --save-dev @types/cookie`
+`npm i npm install --save-dev @types/cors`
+`npm i npm install --save-dev @types/express`
+`npm i npm install --save-dev @types/express-serve-static-core`
+`npm i npm install --save-dev @types/fs-extra`
+`npm i npm install --save-dev @types/http-errors`
+`npm i npm install --save-dev @types/http-proxy`
 `npx cap sync`
 
 ## Creación de componentes
@@ -83,8 +95,8 @@ ESTA COMPONENTE DIO PROBLEMAS Y LA TUVE QUE DESINSTALAR `npm i @capacitor/barcod
 
 ### Creación de guards
 
-`ionic g guard guards/ingreso`
-`ionic g guard guards/inicio`
+`ionic g guard guards/ingreso-guard`
+`ionic g guard guards/inicio-guard`
 
 ### Creación de interfaces
 
@@ -110,7 +122,7 @@ ESTA COMPONENTE DIO PROBLEMAS Y LA TUVE QUE DESINSTALAR `npm i @capacitor/barcod
 `ionic g service services/data-base`
 `ionic g service services/initialize`
 `ionic g service services/sqlite`
-`ionic g service services/geolocation`
+`ionic g service services/geolocation-service`
 
 ### Creación de herramientas
 
@@ -291,46 +303,61 @@ Debe ser como el siguiente:
 
 ```
 <?xml version='1.0' encoding='utf-8'?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application 
-        android:allowBackup="true" 
-        android:icon="@mipmap/ic_launcher" 
-        android:label="@string/app_name" 
-        android:roundIcon="@mipmap/ic_launcher_round" 
-        android:supportsRtl="true" 
-        android:theme="@style/AppTheme" 
-        android:usesCleartextTraffic="true">
-        <activity 
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" 
-            android:exported="true" 
-            android:label="@string/title_activity_main" 
-            android:launchMode="singleTask" 
-            android:name=".MainActivity" 
-            android:theme="@style/AppTheme.NoActionBarLaunch">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <provider 
-            android:authorities="${applicationId}.fileprovider" 
-            android:exported="false" 
-            android:grantUriPermissions="true" 
-            android:name="androidx.core.content.FileProvider">
-            <meta-data 
-                android:name="android.support.FILE_PROVIDER_PATHS" 
-                android:resource="@xml/file_paths" />
-        </provider>
-    </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-feature android:name="android.hardware.location.gps" android:required="true" />
-    <uses-permission android:name="android.permission.CAMERA" android:required="false" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
-    <uses-feature android:name="android.hardware.camera.front" android:required="false" />
+<manifest 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+>
+  <application 
+    android:allowBackup="true" 
+    android:hardwareAccelerated="true"
+    android:icon="@mipmap/ic_launcher" 
+    android:label="@string/app_name" 
+    android:roundIcon="@mipmap/ic_launcher_round" 
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme" 
+    android:usesCleartextTraffic="true"
+  >
+    <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" 
+      android:exported="true" 
+      android:label="@string/title_activity_main" 
+      android:launchMode="singleTask" 
+      android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBarLaunch"
+    >
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <provider 
+      android:authorities="${applicationId}.fileprovider" 
+      android:exported="false" 
+      android:grantUriPermissions="true" 
+      android:name="androidx.core.content.FileProvider"
+    >
+      <meta-data 
+        android:name="android.support.FILE_PROVIDER_PATHS" 
+        android:resource="@xml/file_paths" 
+      />
+    </provider>
+    <meta-data 
+      android:name="com.google.mlkit.vision.DEPENDENCIES" 
+      android:value="barcode_ui"
+    />
+  </application>
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-feature android:name="android.hardware.location.gps" />
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.FLASHLIGHT"/>
 </manifest>
 ```
+INICIO BORRAR SI NO ES NECESARIO
+<uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+<uses-feature android:name="android.hardware.camera" android:required="false" />
+<uses-feature android:name="android.hardware.camera.front" android:required="false" />
+FIN BORRAR SI NO ES NECESARIO
 
 ### Geolocalización
 

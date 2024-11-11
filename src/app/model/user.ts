@@ -1,5 +1,6 @@
 import { EducationalLevel } from './educational-level';
 import { Person } from "./person";
+import { DatabaseService } from '../services/database.service';
 import { inject } from '@angular/core';
 import { convertDateToString } from '../tools/date-functions';
 
