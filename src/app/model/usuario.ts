@@ -11,10 +11,14 @@ export class Usuario extends Persona {
   respuestaSecreta: string = '';
   sesionActiva: string = '';
   cuenta: string = '';
+  asistencia: Asistencia | null = null;
 
   constructor() {
     super();
   }
+
+ 
+
 
   setUsuario(correo: string, password: string, nombre: string, apellido: string, preguntaSecreta: string,
     respuestaSecreta: string, sesionActiva: string)

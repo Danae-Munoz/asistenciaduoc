@@ -2,56 +2,57 @@
   <div class="enmarcar">
     <h1> Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }} </h1>
 
-    <h1 *ngIf="!usuario.asistencia.idAsignatura">
+    <!-- Mostrar un mensaje si 'asistencia.idAsignatura' no existe -->
+    <h1 *ngIf="!usuario.asistencia?.idAsignatura">
       Asistencia sin información
     </h1>
 
-    <div *ngIf="usuario.asistencia.idAsignatura">
-      <h1> Has quedado presente en tu clase </h1>
+    <!-- Mostrar la asistencia si existe 'asistencia.idAsignatura' -->
+    <div *ngIf="usuario.asistencia">
+      <h1>Has quedado presente en tu clase</h1>
       <table>
         <tbody>
           <tr>
             <td>Bloque Inicio</td>
-            <td>{{ usuario.asistencia!.bloqueInicio }}</td>
+            <td>{{ usuario.asistencia.bloqueInicio }}</td>
           </tr>
           <tr>
             <td>Bloque Término</td>
-            <td>{{ usuario.asistencia!.bloqueTermino }}</td>
+            <td>{{ usuario.asistencia.bloqueTermino }}</td>
           </tr>
           <tr>
             <td>Día</td>
-            <td>{{ usuario.asistencia!.dia }}</td>
+            <td>{{ usuario.asistencia.dia }}</td>
           </tr>
           <tr>
             <td>Hora Inicio</td>
-            <td>{{ usuario.asistencia!.horaInicio }}</td>
+            <td>{{ usuario.asistencia.horaInicio }}</td>
           </tr>
           <tr>
             <td>Hora Fin</td>
-            <td>{{ usuario.asistencia!.horaFin }}</td>
+            <td>{{ usuario.asistencia.horaFin }}</td>
           </tr>
           <tr>
             <td>ID Asignatura</td>
-            <td>{{ usuario.asistencia!.idAsignatura }}</td>
+            <td>{{ usuario.asistencia.idAsignatura }}</td>
           </tr>
           <tr>
             <td>Nombre Asignatura</td>
-            <td>{{ usuario.asistencia!.nombreAsignatura }}</td>
+            <td>{{ usuario.asistencia.nombreAsignatura }}</td>
           </tr>
           <tr>
             <td>Nombre Profesor</td>
-            <td>{{ usuario.asistencia!.nombreProfesor }}</td>
+            <td>{{ usuario.asistencia.nombreProfesor }}</td>
           </tr>
           <tr>
             <td>Sección</td>
-            <td>{{ usuario.asistencia!.seccion }}</td>
+            <td>{{ usuario.asistencia.seccion }}</td>
           </tr>
           <tr>
             <td>Sede</td>
-            <td>{{ usuario.asistencia!.sede }}</td>
+            <td>{{ usuario.asistencia.sede }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
-</div>
+    

@@ -12,13 +12,19 @@ import { CommonModule } from '@angular/common';
 })
 export class MiclaseComponent  implements OnInit {
   public usuario: Usuario = new Usuario();
-  constructor(private authService: AuthService) { 
-    this.authService.usuarioAutenticado.subscribe((usuarioAutenticado)=>{
-      if(usuarioAutenticado){
+
+  constructor(private authService: AuthService) {
+    this.authService.usuarioAutenticado.subscribe((usuarioAutenticado) => {
+      if (usuarioAutenticado) {
         this.usuario = usuarioAutenticado;
+        // Inicializar la propiedad asistencia con un objeto vacío si no tiene datos
+        if (!this.usuario.asistencia) {
+          this.usuario.asistencia = this.usuario.asistenciaVacia();
+        }
       }
-    })
+    });
   }
+  
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
