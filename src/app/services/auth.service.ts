@@ -32,6 +32,10 @@ export class AuthService {
     }
   }
 
+  inicializarAutenticacion() {
+    this.storage.create();
+  }
+
   async isAuthenticated(): Promise<boolean> {
     try {
       return Boolean(await this.readAuthUser());

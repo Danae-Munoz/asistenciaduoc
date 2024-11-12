@@ -20,6 +20,7 @@ export class SQLiteService {
   
   constructor() { }
 
+  
   async inicializarPlugin(): Promise<boolean> {
     this.platform = Capacitor.getPlatform();
     if(this.platform === 'ios' || this.platform === 'android') this.native = true;
