@@ -25,8 +25,6 @@ export class CorrectoPage implements OnInit {
       this.password = contraseña;
     });   
 
-
-
     const nav = this.router.getCurrentNavigation();
     if (nav) {
       if (nav.extras.state) {

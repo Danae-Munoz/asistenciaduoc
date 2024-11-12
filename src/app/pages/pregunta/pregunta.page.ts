@@ -6,7 +6,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/model/usuario';
-import { User } from 'src/app/model/user';
+
 
 @Component({
   selector: 'app-pregunta',
@@ -16,7 +16,7 @@ import { User } from 'src/app/model/user';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class PreguntaPage implements OnInit {
-  usu = new User ();
+  usu = new Usuario ();
   respuestaSecreta = ''
   preguntaSecreta=''
   nombre=''
@@ -30,9 +30,9 @@ export class PreguntaPage implements OnInit {
       if (nav.extras.state) {
         this.usu = nav.extras.state['usuario'];
         console.log(this.usu)
-        this.preguntaSecreta=this.usu.secretQuestion;
-        this.nombre=this.usu.firstName;
-        this.apellido=this.usu.lastName;
+        this.preguntaSecreta=this.usu.preguntaSecreta;
+        this.nombre=this.usu.nombre;
+        this.apellido=this.usu.apellido;
 
         console.log(this.usu.toString());
         return;
@@ -45,7 +45,7 @@ export class PreguntaPage implements OnInit {
   recuperarContrasena(){
     if (this.usu === undefined){
     }else{
-      if(this.usu.secretAnswer==this.respuestaSecreta){
+      if(this.usu.respuestaSecreta==this.respuestaSecreta){
         this.router.navigate(['/correcto']);
         this.authService.transmitirContraseña(this.usu.password);
 

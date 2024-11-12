@@ -92,21 +92,25 @@ export class DatabaseService {
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
   `;
 
-  dataBaseName = 'DinosaurDataBase';
+  nombreBD = 'DinosaurDataBase';
   db!: SQLiteDBConnection;
   userList: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   listaUsuarios: BehaviorSubject<Usuario[]> = new BehaviorSubject<Usuario[]>([]);
   constructor(private sqliteService: SQLiteService) { }
 
-  async initializeDataBase() {
-    try {
-      await this.sqliteService.createDataBase({database: this.dataBaseName, upgrade: this.userUpgrades});
-      this.db = await this.sqliteService.open(this.dataBaseName, false, 'no-encryption', 1, false);
-      await this.createTestUsers();
-      await this.readUsers();
-    } catch (error) {
-      showAlertError('DataBaseService.initializeDataBase', error);
-    }
+  async inicializarBaseDeDatos() {
+
+    // Crear base de datos SQLite
+    await this.sqliteService.crearBaseDeDatos({database: this.nombreBD, upgrade: this.userUpgrades});
+
+    // Abrir base de datos
+    this.db = await this.sqliteService.abrirBaseDeDatos(this.nombreBD, false, 'no-encryption', 1, false);
+
+    // Para crear usuarios de prueba descomenta la siguiente línea
+    await this.crearUsuariosDePrueba();
+
+    // Cargar la lista de usuarios
+    await this.leerUsuarios();
   }
 
   async createTestUsers() {
@@ -357,6 +361,13 @@ export class DatabaseService {
       'SELECT * FROM USUARIO WHERE correo=?;',
       [correo])).values as Usuario[];
     return usuarios[0];
+  }
+
+  async crearUsuariosDePrueba() {
+    await this.guardarUsuario(Usuario.getUsuario('atorres@duocuc.cl', '1234', 'Ana', 'Torres', 'Nombre de mi mascota', 'gato', 'N'));
+    await this.guardarUsuario(Usuario.getUsuario('avalenzuela@duocuc.cl', 'qwer', 'Alberto', 'Valenzuela', 'Mi mejor amigo', 'juanito', 'N'));
+    await this.guardarUsuario(Usuario.getUsuario('cfuentes@duocuc.cl', 'asdf', 'Carla', 'Fuentes', 'Dónde nació mamá', 'valparaiso', 'N'));
+    await this.guardarUsuario(Usuario.getUsuario('admin', '1234', 'admin', '', 'Animal Fav', 'Gato', 'N'));
   }
 
 }

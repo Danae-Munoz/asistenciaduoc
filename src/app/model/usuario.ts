@@ -5,31 +5,30 @@ import { DatabaseService } from '../services/database.service';
 import { Optional } from '@angular/core';
 
 export class Usuario extends Persona {
+  correo: string = '';
+  password: string = '';
+  preguntaSecreta: string = '';
+  respuestaSecreta: string = '';
+  sesionActiva: string = '';
+  cuenta: string = '';
 
-  public cuenta: string;
-  public correo: string;
-  public password: string;
-  public preguntaSecreta: string;
-  public respuestaSecreta: string;
-  public asistencia: Asistencia;
-  public listaUsuarios: Usuario[];
-
-
-  constructor(@Optional() private db?: DatabaseService) {
+  constructor() {
     super();
-    this.cuenta = '';
-    this.correo = '';
-    this.password = '';
-    this.preguntaSecreta = '';
-    this.respuestaSecreta = '';
-    this.nombre = '';
-    this.apellido = '';
-    this.nivelEducacional = NivelEducacional.buscarNivelEducacional(1)!;
-    this.fechaNacimiento = undefined;
-    this.asistencia = this.asistenciaVacia();
-    this.listaUsuarios = [];
   }
 
+  setUsuario(correo: string, password: string, nombre: string, apellido: string, preguntaSecreta: string,
+    respuestaSecreta: string, sesionActiva: string)
+  {
+    this.correo = correo;
+    this.password = password;
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.preguntaSecreta = preguntaSecreta;
+    this.respuestaSecreta = respuestaSecreta;
+    this.sesionActiva = sesionActiva;
+  }
+
+  // Asistencia vacía
   public asistenciaVacia(): Asistencia {
     return {  
       bloqueInicio: 0,
@@ -45,63 +44,81 @@ export class Usuario extends Persona {
     };
   }
 
-  public static getNewUsuario(
-    cuenta: string,
-    correo: string,
-    password: string,
+  // Método estático para crear un nuevo usuario
+  static getUsuario(
+    correo: string, 
+    password: string, 
+    nombre: string, 
+    apellido: string, 
     preguntaSecreta: string,
-    respuestaSecreta: string,
-    nombre: string,
-    apellido: string,
-    nivelEducacional: NivelEducacional,
-    fechaNacimiento: Date | undefined
-  ) {
-    let usuario = new Usuario();
-    usuario.cuenta = cuenta;
-    usuario.correo = correo;
-    usuario.password = password;
-    usuario.preguntaSecreta = preguntaSecreta;
-    usuario.respuestaSecreta = respuestaSecreta;
-    usuario.nombre = nombre;
-    usuario.apellido = apellido;
-    usuario.nivelEducacional = nivelEducacional;
-    usuario.fechaNacimiento = fechaNacimiento;
-    return usuario;
+    respuestaSecreta: string, 
+    sesionActiva: string
+  ): Usuario {
+    const usu = new Usuario();
+    usu.setUsuario(correo, password, nombre, apellido, preguntaSecreta, respuestaSecreta, sesionActiva);
+    return usu;
   }
 
-  async buscarUsuarioValido(cuenta: string, password: string): Promise<Usuario | undefined> {
-    return await this.db!.buscarUsuarioValido(cuenta, password);
+  // Método para validar campos requeridos
+  validarCampoRequerido(nombreCampo: string, valor: string): string {
+    if (valor.trim() === '') {
+      return `El campo "${nombreCampo}" debe tener un valor.`;
+    }
+    return '';
   }
 
-  async buscarUsuarioPorCuenta(cuenta: string): Promise<Usuario | undefined>  {
-    return await this.db!.buscarUsuarioPorCuenta(cuenta);
+  // Métodos específicos de validación de cada campo
+  validarCorreo(correo: string): string {
+    return this.validarCampoRequerido('correo', correo);
   }
-  public static buscarUsuarioPorCorreo(correo: string): Usuario | undefined {
-    const usuario = new Usuario();  // Crear una nueva instancia de Usuario
-    DatabaseService.crearUsuariosDePrueba();  // Asegurarte de que la lista de usuarios esté poblada
-    return usuario.listaUsuarios.find(usu => usu.correo === correo);  // Buscar en la lista de usuarios
+
+  validarPassword(password: string): string {
+    return this.validarCampoRequerido('contraseña', password);
   }
+
+  validarNombre(nombre: string): string {
+    return this.validarCampoRequerido('nombre', nombre);
+  }
+
+  validarApellido(apellido: string): string {
+    return this.validarCampoRequerido('apellido', apellido);
+  }
+
+  validarPreguntaSecreta(preguntaSecreta: string): string {
+    return this.validarCampoRequerido('pregunta secreta', preguntaSecreta);
+  }
+
+  validarRespuestaSecreta(respuestaSecreta: string): string {
+    return this.validarCampoRequerido('respuesta secreta', respuestaSecreta);
+  }
+
+  // Método para validar todos los campos del usuario
+  validarPropiedadesUsuario(
+    correo: string, 
+    password: string, 
+    nombre: string, 
+    apellido: string, 
+    preguntaSecreta: string, 
+    respuestaSecreta: string
+  ): string {
+    return this.validarCorreo(correo) || 
+           this.validarPassword(password) || 
+           this.validarNombre(nombre) || 
+           this.validarApellido(apellido) || 
+           this.validarPreguntaSecreta(preguntaSecreta) || 
+           this.validarRespuestaSecreta(respuestaSecreta);
+  }
+
+  // Método para validar el correo, con restricciones de longitud
+  public validarCorreoCompleto(): string {
+    if (this.correo.trim() === '') {
+      return 'Al ingresar en el sistema debe ingresar un nombre de usuario.';
+    }
+    if (this.correo.length < 3 || this.correo.length > 8) {
+      return 'El nombre de usuario debe tener entre 3 y 8 caracteres.';
+    }
+    return '';
+  }
+
   
-
-  async guardarUsuario(usuario: Usuario): Promise<void> {
-    this.db!.guardarUsuario(usuario);
-  }
-
-  async eliminarUsuario(cuenta: string): Promise<void>  {
-    this.db!.eliminarUsuarioUsandoCuenta(cuenta);
-  }
-
-  public override toString(): string {
-    return `
-      ${this.cuenta}
-      ${this.correo}
-      ${this.password}
-      ${this.preguntaSecreta}
-      ${this.respuestaSecreta}
-      ${this.nombre}
-      ${this.apellido}
-      ${this.nivelEducacional.getEducacion()}
-      ${this.getFechaNacimiento()}`;
-  }
-
 }
