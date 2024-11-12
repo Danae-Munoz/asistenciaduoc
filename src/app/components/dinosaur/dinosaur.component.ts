@@ -1,6 +1,6 @@
 import { User } from 'src/app/model/user';
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { Subscription } from 'rxjs';
@@ -13,19 +13,23 @@ import { AuthService } from 'src/app/services/auth.service';
   standalone: true,
   imports: [IonContent, IonGrid, IonRow, IonCol, CommonModule, FormsModule]
 })
-export class DinosaurComponent implements OnDestroy {
+export class DinosaurComponent implements OnInit {
+  // Definir la propiedad 'dino' aquí
+  dino: any; // O el tipo específico si tienes una interfaz para Dino
 
-  user: any;
-  private subscription: Subscription;
+  constructor() { }
 
-  constructor(private authService: AuthService) { 
-    this.subscription = this.authService.qrCodeData.subscribe((qr) => {
-      this.user = qr? JSON.parse(qr): null;
-    })
+  ngOnInit() {
+    // Inicializa 'dino' con los datos deseados
+    this.dino = {
+      name: 'Tyrannosaurus Rex',
+      length: '12 meters',
+      height: '6 meters',
+      weight: '8000 kg',
+      diet: 'Carnivore',
+      period: 'Late Cretaceous',
+      extinction: '65 million years ago',
+      found: '1902'
+    };
   }
-  
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-
 }
