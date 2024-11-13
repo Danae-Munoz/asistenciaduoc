@@ -45,16 +45,17 @@ export class AuthService {
     }
   }
 
-  async readAuthUser(): Promise<User | null> {
-    try {
-      const user = (await this.storage.get(this.storageAuthUserKey)) as User | null;
-      this.authUser.next(user ?? null);
-      return user;
-    } catch (error) {
-      showAlertError('AuthService.readAuthUser', error);
-      return null;
-    }
+  async readAuthUser(): Promise<User | null> {  
+    try {  
+        const user = (await this.storage.get(this.storageAuthUserKey)) as User | null;  
+        this.authUser.next(user ?? null);  
+        return user;  
+    } catch (error) {  
+        showAlertError('AuthService.readAuthUser', error);  
+        return null;  
+    }  
   }
+
 
   async saveAuthUser(user: User): Promise<User | null> {
     try {
@@ -65,6 +66,7 @@ export class AuthService {
       showAlertError('AuthService.saveAuthUser', error);
       return null;
     }
+    
   }
 
   async deleteAuthUser(): Promise<boolean> {
